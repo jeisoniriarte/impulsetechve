@@ -153,12 +153,12 @@ const iconTheme = 'uil-sun'
 const selectedTheme = localStorage.getItem('selected-theme')
 const selectedIcon = localStorage.getItem('selected-icon')
 
-const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
-const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'
+const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'light' : 'dark'
+const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-sun' : 'uil-moon'
 
 if (selectedTheme) {
-    document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
-    themeButton.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove'](iconTheme)
+    document.body.classList[selectedTheme === 'dark' ? 'remove' : 'add'](darkTheme)
+    themeButton.classList[selectedIcon === 'uil-moon' ? 'remove' : 'add'](iconTheme)
 }
 
 themeButton.addEventListener('click', () => {
