@@ -62,22 +62,109 @@ tabs.forEach(tab => {
     })
 })
 /*==================== SERVICES MODAL ====================*/
+const modalViews = document.querySelectorAll('.services-modal'),
+    modalBtns = document.querySelectorAll('.services-button'),
+    modalCloses = document.querySelectorAll('.services-modal-close')
 
+let modal = function (modalClick) {
+    modalViews[modalClick].classList.add('active-modal')
+}
 
+modalBtns.forEach((modalBtns, i) => {
+    modalBtns.addEventListener('click', () => {
+        modal(i)
+    })
+})
+
+modalCloses.forEach((modalClose) => {
+    modalClose.addEventListener('click', () => {
+        modalViews.forEach((modalView) => {
+            modalView.classList.remove('active-modal')
+        })
+    })
+})
 /*==================== PORTFOLIO SWIPER  ====================*/
-
-
+let swiperPortfolio = new Swiper('.portfolio-container', {
+    cssMode: true,
+    loop: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+});
 /*==================== TESTIMONIAL ====================*/
-
-
+let swiperTestimonial = new Swiper('.testimonial-container', {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 48,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+    },
+    breakpoints: {
+        568: {
+            slidesPerView: 2,
+        }
+    }
+});
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
+const sections = document.querySelectorAll('section[id]')
 
+function scrollActive() {
+    const scrollY = window.pageYOffset
 
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight
+        const sectionTop = current.offsetTop - 50;
+        sectionId = current.getAttribute('id')
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.add('active-link')
+        } else {
+            document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.remove('active-link')
+        }
+    })
+}
+window.addEventListener('scroll', scrollActive)
 /*==================== CHANGE BACKGROUND HEADER ====================*/
-
-
-/*==================== SHOW SCROLL UP ====================*/
+function scrollHeader() {
+    const nav = document.getElementById('header')
+    if (this.scrollY >= 200) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header')
+}
+window.addEventListener('scroll', scrollHeader)
+/*==================== MENU SOCIAL BAR ====================*/
 document.getElementById('more-button').addEventListener('click', () => {
     document.getElementById('list-container').classList.toggle('active')
 });
 /*==================== DARK LIGHT THEME ====================*/
+const themeButton = document.getElementById('theme-button')
+const darkTheme = 'dark-theme'
+const iconTheme = 'uil-sun'
+
+const selectedTheme = localStorage.getItem('selected-theme')
+const selectedIcon = localStorage.getItem('selected-icon')
+
+const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
+const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'
+
+if (selectedTheme) {
+    document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
+    themeButton.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove'](iconTheme)
+}
+
+themeButton.addEventListener('click', () => {
+    document.body.classList.toggle(darkTheme)
+    themeButton.classList.toggle(iconTheme)
+
+    localStorage.setItem('selected-theme', getCurrentTheme())
+    localStorage.setItem('selected-icon', getCurrentIcon())
+})
