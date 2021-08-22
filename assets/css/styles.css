@@ -3,7 +3,7 @@
 /*==================== VARIABLES CSS ====================*/
 :root {
     --header-height: 3rem;
-    --nav-width: 219px;
+    --nav-width: 200px;
     /*========== Colors ==========*/
     /* Change favorite color */
     --hue-color: 250; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
@@ -289,7 +289,7 @@ img {
     background-color: var(--container-color);
     box-shadow: 1px 0 0 rgba(22, 8, 43, .1);
     z-index: var(--z-fixed);
-    transition: .4s;
+    transition: all .4s ease;
 }
 .nav-container {
     height: 100%;
@@ -352,9 +352,9 @@ img {
         display: none;
     }
     .navbar-desktop {
-        left: 0;
         padding: 1.2rem 1.5rem 3rem;
         width: 68px;
+        overflow: auto;
     }
     .nav-items-desktop {
         row-gap: 1.7rem;
@@ -366,7 +366,6 @@ img {
     .nav-name-desktop,
     .nav-subtitle-desktop {
         opacity: 0;
-        transition: .3s;
     }
     .navbar-desktop:hover {
         width: var(--nav-width);
@@ -459,7 +458,7 @@ img {
     animation: spin 10s linear infinite;
 }
 .effect-2 {
-    left: 3%;
+    left: 7%;
     bottom: 20%;
     width: 40px;
     display: flex;
