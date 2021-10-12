@@ -3,7 +3,7 @@
 /*==================== VARIABLES CSS ====================*/
 :root {
     --header-height: 3rem;
-    --nav-width: 200px;
+    --nav-width: auto;
     /*========== Colors ==========*/
     /* Change favorite color */
     --hue-color: 250; /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
@@ -53,6 +53,8 @@
 /* Font size for large devices */
 @media screen and (min-width: 968px) {
     :root {
+        --nav-width: 190px;
+
         --big-font-size: 3rem;
         --h1-font-size: 2.25rem;
         --h2-font-size: 1.5rem;
@@ -154,19 +156,6 @@ img {
     background-color: var(--body-color);
     box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
 }
-.nav-logo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: var(--z-fixed);
-    margin: var(--mb-1);
-    animation: topBoLogo 4s ease-in-out infinite;
-}
-.header-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
 @keyframes topBoLogo {
     0%, 100% {
         transform: translateY(0);
@@ -210,13 +199,14 @@ img {
     justify-content: space-between;
     align-items: center;
 }
-.nav-logo,
 .nav-toggle {
     color: var(--title-color);
     font-weight: var(--font-medium);
 }
-.nav-logo:hover {
-    color: var(--first-color);
+.header-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 .nav-toggle {
     font-size: 1.5rem;
@@ -224,19 +214,6 @@ img {
 }
 .nav-toggle:hover {
     color: var(--first-color);
-}
-@media screen and (max-width: 767px) {
-    .nav-menu {
-        position: fixed;
-        bottom: -100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--body-color);
-        padding: 2rem 1.5rem 4rem;
-        box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
-        border-radius: 1.5rem 1.5rem 0 0;
-        transition: .1s;
-    }
 }
 .nav-list {
     grid-template-columns: repeat(3, 1fr);
@@ -267,6 +244,33 @@ img {
 .nav-close:hover {
     color: var(--first-color-alt);
 }
+@media screen and (max-width: 767px) {
+    .navbar-desktop {
+        display: none;
+    }
+    .nav-menu {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--body-color);
+        padding: 2rem 1.5rem 4rem;
+        box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
+        border-radius: 1.5rem 1.5rem 0 0;
+        transition: .1s;
+    }
+    .nav-logo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: var(--z-fixed);
+        margin: var(--mb-1);
+        animation: topBoLogo 4s ease-in-out infinite;
+    }
+}
+@media screen and (min-width: 768px) {
+
+}
 /* show menu */
 .show-menu {
     bottom: 0;
@@ -286,10 +290,12 @@ img {
     left: 0;
     height: 100vh;
     padding: 1rem 1rem 3rem;
+    width: 51px;
     background-color: var(--container-color);
     box-shadow: 1px 0 0 rgba(22, 8, 43, .1);
     z-index: var(--z-fixed);
     transition: all .4s ease;
+    overflow: auto;
 }
 .nav-container {
     height: 100%;
@@ -341,39 +347,30 @@ img {
 .nav-logout-desktop {
     margin-top: 5rem;
 }
-/* Responsive Desktop */
-@media screen and (max-width: 769px) {
-    .navbar-desktop {
-        display: none;
-    }
+.nav-logo-name-desktop,
+.nav-name-desktop,
+.nav-subtitle-desktop {
+    opacity: 0;
 }
-@media screen and (min-width: 768px) {
-    .navbar-mobile {
-        display: none;
-    }
+.navbar-desktop:hover {
+    width: var(--nav-width);
+}
+.navbar-desktop:hover .nav-logo-name-desktop,
+.navbar-desktop:hover .nav-name-desktop,
+.navbar-desktop:hover .nav-subtitle-desktop {
+    opacity: 1;
+}
+/* Responsive Desktop */
+@media screen and (min-width: 968px) {
     .navbar-desktop {
         padding: 1.2rem 1.5rem 3rem;
         width: 68px;
-        overflow: auto;
     }
     .nav-items-desktop {
         row-gap: 1.7rem;
     }
     .nav-icon-desktop {
         font-size: 1.3rem;
-    }
-    .nav-logo-name-desktop,
-    .nav-name-desktop,
-    .nav-subtitle-desktop {
-        opacity: 0;
-    }
-    .navbar-desktop:hover {
-        width: var(--nav-width);
-    }
-    .navbar-desktop:hover .nav-logo-name-desktop,
-    .navbar-desktop:hover .nav-name-desktop,
-    .navbar-desktop:hover .nav-subtitle-desktop {
-        opacity: 1;
     }
 }
 /*==================== HOME ====================*/
